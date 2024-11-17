@@ -7,18 +7,30 @@ Dúvidas e solicitações relacionadas a integração e API, devem ser enviadas 
 Recursos disponíveis para acesso via API:
 * [**Usuários**](#reference/recursos/usuarios)
 
-# Biblioteca
-Integre seu sistema de forma rápida e fácil utilizando nossa [biblioteca para PHP](https://github.com/eGestor/egestor-sdk-php).
+## Tecnologia
+| Target framework | Versão |
+|---|---|
+| `.NET` | 5.0 |
+| `XUnit` | 2.4.1 |
 
 ## URLs de acesso
-O eGestor não possui sandbox (ambiente de homologação). Cada conta do eGestor é isolada das outras (multi-tenant), sugerimos aos desenvolvedores que criem uma conta de testes, e depois utilizem a conta de produção com os dados dos clientes.
+O Web.API não possui sandbox (ambiente de homologação). Sugerimos aos desenvolvedores que clone o repositório e execute localmente.
 
-Para testar a API, crie uma conta gratuitamente, acesse o sistema e clique no menu configurações. Na aba API você gera o personal_token.
+Para testar a API:
+1. Clonar o projeto.
+2. Abra o Visual Studio.
+3. Executar rebuild da solution.
+4. Clique Start Without Debugging.
 
-URL homologação/produção (access_token): https://api.egestor.com.br/api/oauth/access_token
+URL repositório: https://github.com/gthyago/Web.API
 
-URL homologação/produção (ex: contatos): https://api.egestor.com.br/api/v1/contatos
+URL Web.API: https://localhost:44309/swagger/index.html
 
+## Comandos
+Como clonar o projeto:
+| Comando | Descrição |
+|---|---|
+| `git clone https://github.com/gthyago/Web.API.git` | Utilizado para clonar o projeto. |
 
 ## Métodos
 Requisições para a API devem seguir os padrões:
@@ -26,19 +38,17 @@ Requisições para a API devem seguir os padrões:
 |---|---|
 | `POST` | Utilizado para validar uma nova senha. |
 
-
 ## Respostas
-
 | Código | Descrição |
 |---|---|
 | `200` | Requisição executada com sucesso (success).|
-| `401` | Dados de acesso inválidos.|
+| `401` | A combinação da senha não está de acordo com os critérios solicitados!|
 
 
 #### Dados para envio no POST
 | Parâmetro | Descrição |
 |---|---|
-| `password` | parâmetro com informações da senha a ser validada. |
+| `password` | Parâmetro com informações da senha a ser validada. |
 
 
 + Request (application/json)
@@ -46,7 +56,7 @@ Requisições para a API devem seguir os padrões:
     + Body
 
             {
-              "password": "teste01"              
+              "password": "String-111"              
             }
 
 + Response 200 (application/json)
@@ -54,5 +64,23 @@ Requisições para a API devem seguir os padrões:
     + Body
 
             {
-                ""
+			  "message": "Senha validada com sucesso!",
+  			  "success": true
+			}
+			
++ Request (application/json)
+
+    + Body
+
+            {
+              "password": "string"              
             }
+
++ Response 401 (application/json)
+
+    + Body
+
+            {
+			  "message": "A combinação da senha não está de acordo com os critérios solicitados!",
+			  "success": false
+			}

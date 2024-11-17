@@ -54,7 +54,7 @@ namespace Web.API
             {
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
-                    Title = "User API",
+                    Title = "Web.API",
                     Version = "v1",
                     Description = "API web que valida se uma senha é valida.",
                     Contact = new OpenApiContact
